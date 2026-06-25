@@ -82,6 +82,7 @@ btnRestart.addEventListener('click', function() {
 });
 
 
-btnReload.addEventListener('clicc', () => {
-    document.reload()
-})
+btnReload.addEventListener('click', function() {
+    // Fungsi untuk me-reload halaman
+    window.location.reload();
+});
