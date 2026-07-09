@@ -20,10 +20,13 @@
 </head>
 <body>
 
+    <nav>
+        <h1 id="lbl-poin"></h1>
+    </nav>
     <!-- btn : lingkarang -->
     <div class="btn-container">
         <div class="btn-content">
-            <button class="red-3d-button">Press Me</button>
+            <button class="red-3d-button" id="btn-press">Press Me</button>
         </div>
     </div>
     
@@ -33,6 +36,12 @@
     </div>
     
     <!-- script js --> 
-    <script src="../js/script.js"></script>
+    <script>
+
+const lblPoin = document.getElementById('lbl-poin')
+document.getElementById('btn-press').addEventListener('click', () => {
+    lblPoin.innerHTML = Strint
+})
+    </script>
 </body>
 </html>

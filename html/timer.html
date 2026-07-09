@@ -9,13 +9,25 @@
     <style>
         @font-face {
             font-family: 'digital';
-            src: url('../font/digital.ttf');
+            src: url('../font/DS-DIGI.TTF');
+        }
+        body {
+            font-family: 'digital', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+        }
+        div {
+            font-size: 5rem;
+            color: #333;
         }
     </style>
 </head>
 <body>
     <!-- Elemen untuk menampilkan timer -->
-    <div id="timerDisplay">Waktu tersisa: 30</div>
+    <div id="timerDisplay">00:00</div>
 
     <!-- script js -->
     <script src="../js/timer.js"></script>
