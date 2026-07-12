@@ -16,36 +16,25 @@ body {
 }
 
 .red-3d-button {
-  /* Shape it into a perfect circle */
   width: 200px;
   height: 200px;
   border-radius: 50%;
   border: none;
-  
-  /* Give it a red surface with a slight highlight to look spherical */
   background: radial-gradient(circle at 30% 30%, #ff4d4d, #c0392b);
-  
-  /* Create the 3D thickness and drop shadow */
   box-shadow: 
     0 10px 0 #8b0000,                  /* The dark red 3D edge */
     0 12px 20px rgba(0, 0, 0, 0.4),    /* The shadow cast on the floor */
     inset 0 -5px 15px rgba(0, 0, 0, 0.2); /* Inner shadow for depth */
-    
-  /* Text styling */
   color: white;
   font-family: Arial, sans-serif;
   font-size: 24px;
   font-weight: bold;
   letter-spacing: 2px;
   cursor: pointer;
-  
-  /* Smooth animation when the button is clicked */
   transition: all 0.1s ease;
 }
 
-/* The physical "push" effect when the user clicks */
 .red-3d-button:active {
-
   transform: translateY(10px);
   box-shadow: 
     0 0 0 #8b0000, 
