@@ -1,0 +1,6 @@
+input-gugus
+input-username
+input-point
+
+db: db_game_tap
+tb: tb_point
