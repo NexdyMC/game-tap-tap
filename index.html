@@ -11,90 +11,79 @@
     <style>
         @font-face {
             font-family: 'Digital';
-
+            src: url('font/digital-7.ttf') format('truetype');
         }
+.btn-3d {
+    padding: 16px 32px;
+    font-size: 18px;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.05s, box-shadow 0.05s;
+    position: relative;
+    outline: none;
+}
+.btn-green {
+    background-color: #27ae60;
+    color: white;
+    box-shadow: 0 6px 0 #1e8449;
+}
+
+.input-3d, .select-3d {
+    padding: 12px 16px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: none;
+    background-color: #f0f0f0;
+    box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+    outline: none;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.input-3d:focus, .select-3d:focus {
+    background-color: #ffffff;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 5px rgba(52, 152, 219, 0.5);
+}
+
+.select-3d {
+    appearance: none; 
+    cursor: pointer;
+    background-image: url('data:image/svg+xml;utf8,<svg fill="black" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+}
+
     </style>
 </head>
-<body>
+<body class="bg-blue-800 flex justify-center items-center">
 
     <!-- section : from -->
-    <section>
-        <form>
-            <label>Masukan Nama</label>
-            <input type="text">
-
-            <label>
-                Masukan Gugus
-                <input type="text">
-            </label>
-
-            <button type="submit">Kirim</button>
-        </form>
-    </section>
     
-    <!-- section : menu -->
-    <section>
-        <p>Wercome [Username] </p>
-        
-        <button>Play Game</button>
-        
-        <!-- akan muncul saat game selesai -->
-        <button>Score Board</button> 
-    </section>
-
-    <!-- section : start game  -->
-    <section class="bg-blue-100">
-        <p class="text-2xl font-[]">timer</p>
-        
-        <div class="btn-content">
-            <button class="red-3d-button">Press Me</button>
-        </div>
+    <main class="max-w-[480px] w-full min-width-[100px] h-screen bg-blue-100">
+        <section class="w-full h-screen bg-blue-200 flex flex-col justify-center items-center">
+            <p class="text-2xl font-bold">Title Game</p>
+            
+            <!-- form input -->
+            <main class="grid border-2 border-blue-400 p-4 gap-4 w-full max-w-[300px]">
+                <label for="username">Masukan Nama</label>
+                <input type="text" class="input-3d" id="username">
     
-        <div class="pop-up">
-            <p>Game selesai</p>
-        </div>
-    </section>
+                <label for="gugus">Masukan Gugus</label>
+                <input type="text" class="input-3d" id="gugus">
     
-    <!-- section : finis  -->
-    <section>
-        <p>congraturation [username]</p>
-        <p>point: [point]</p>
-        <button>Play Again</button>
-        <button>Score Board</button>
-    </section>
-
-    <!-- section : papan score  -->
-    <section class="bg-cyan-100">
-        <p>Score Board</p>
-        <table>
-            <thead>
-                <tr>
-                    <th>Nama</th>
-                    <th>Gugus</th>
-                    <th>Point</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Nexdy Experiment</td>
-                    <td>Gugus Depan</td>
-                    <td>100</td>
-                </tr>
-                <tr>
-                    <td>Nexdy Experiment</td>
-                    <td>Gugus Depan</td>
-                    <td>200</td>
-                </tr>
-            </tbody>
-        </table>
-    </section>
-
-<!-- perintah dasar github -->
-<!-- git add . -->
-<!-- git commit -m "masukan deskripsi disini" -->
-<!-- git push -u origin main -->
+                <button class="btn-3d btn-green">Klik Saya</button>
+            </main>
+        </section>
+    </main>
 
     <!-- script js --> 
     <script src="js/script.js"></script>
 </body>
 </html>
+<!-- perintah dasar github -->
+<!-- git add . -->
+<!-- git commit -m "masukan deskripsi disini" -->
+<!-- git push -u origin main -->
