@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zoom Screen Transition + Loading</title>
+<style>
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html,body{ height:100%; overflow:hidden; background:#000; font-family:sans-serif; }
+
+  .screen{
+    position:fixed;
+    inset:0;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    gap:20px;
+    color:white;
+    transform: scale(0.6);
+    opacity:0;
+    pointer-events:none;
+    z-index:1;
+    transition: transform .6s cubic-bezier(.22,1,.36,1),
+                opacity .5s ease;
+  }
+  .screen.active{
+    transform: scale(1);
+    opacity:1;
+    pointer-events:auto;
+    z-index:2;
+  }
+
+  .screen-main{ background:radial-gradient(circle at 50% 40%, #1e293b, #020617); }
+  .screen-play{ background:radial-gradient(circle at 50% 40%, #164e63, #020617); }
+  .screen-final{ background:radial-gradient(circle at 50% 40%, #365314, #020617); }
+  .screen-loading{ background:#020617; z-index:3; }
+
+  .loading-bar-track{
+    width:260px; height:6px; border-radius:999px;
+    background:rgba(255,255,255,.15); overflow:hidden;
+  }
+  .loading-bar-fill{
+    height:100%; width:0%;
+    background:linear-gradient(90deg,#22d3ee,#facc15,#4ade80);
+    border-radius:999px;
+  }
+  .loading-percent{ font-size:.8rem; letter-spacing:.1em; color:rgba(255,255,255,.6); }
+
+  h1{ font-size:2rem; letter-spacing:.05em; text-transform:uppercase; }
+  button{
+    padding:14px 34px; font-size:1rem; font-weight:600; border:none;
+    border-radius:10px; background:white; color:#111; cursor:pointer;
+    transition:transform .15s ease;
+  }
+  button:hover{ transform:scale(1.05); }
+  button:active{ transform:scale(0.95); }
+</style>
+</head>
+<body>
+
+  <div class="screen screen-loading active" data-screen="loading">
+    <h1>Loading...</h1>
+    <div class="loading-bar-track">
+      <div class="loading-bar-fill" id="loadingFill"></div>
+    </div>
+    <span class="loading-percent" id="loadingPercent">0%</span>
+  </div>
+
+  <div class="screen screen-main" data-screen="main">
+    <h1>Main Menu</h1>
+    <button data-target="play">screen play</button>
+  </div>
+
+  <div class="screen screen-play" data-screen="play">
+    <h1>Play</h1>
+    <button data-target="final">screen final</button>
+  </div>
+
+  <div class="screen screen-final" data-screen="final">
+    <h1>Final</h1>
+    <button data-target="main">screen main</button>
+  </div>
+
+<script>
+  const screens = {
+    loading: document.querySelector('[data-screen="loading"]'),
+    main:  document.querySelector('[data-screen="main"]'),
+    play:  document.querySelector('[data-screen="play"]'),
+    final: document.querySelector('[data-screen="final"]')
+  };
+
+  const fillEl = document.getElementById('loadingFill');
+  const percentEl = document.getElementById('loadingPercent');
+  const LOADING_DURATION = 5000;
+
+  function showScreen(targetName){
+    const target = screens[targetName];
+    const current = document.querySelector('.screen.active');
+    if (!target || target === current) return;
+
+    target.classList.add('active');
+    if (current){
+      requestAnimationFrame(() => current.classList.remove('active'));
+    }
+  }
+
+  function transitionWithLoading(targetName){
+    fillEl.style.transition = 'none';
+    fillEl.style.width = '0%';
+    percentEl.textContent = '0%';
+    void fillEl.offsetWidth;
+
+    showScreen('loading');
+
+    requestAnimationFrame(() => {
+      fillEl.style.transition = `width ${LOADING_DURATION}ms linear`;
+      fillEl.style.width = '100%';
+    });
+
+    let elapsed = 0;
+    const stepTime = 50;
+    const percentTimer = setInterval(() => {
+      elapsed += stepTime;
+      const percent = Math.min(100, Math.round((elapsed / LOADING_DURATION) * 100));
+      percentEl.textContent = percent + '%';
+      if (percent >= 100) clearInterval(percentTimer);
+    }, stepTime);
+
+    setTimeout(() => {
+      showScreen(targetName);
+    }, LOADING_DURATION);
+  }
+
+  document.querySelectorAll('button[data-target]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      transitionWithLoading(btn.dataset.target);
+    });
+  });
+
+  transitionWithLoading('main');
+</script>
+
+</body>
+</html>

@@ -27,6 +27,8 @@
     </style>
 </head>
 <body class="hero bg-[#050c18] overflow-x-hidden flex justify-center items-center ">
+
+    <!-- background : animasi electro -->
     <div id="amination">
         <canvas id="net"></canvas>
         <div class="bokeh"
@@ -45,30 +47,36 @@
             style="width:160px;height:160px; left:42%; bottom:6%; background:radial-gradient(circle,var(--node) 0%, transparent 72%); opacity:.4; animation-delay:3s;">
         </div>
     </div>
-
+    
+    <!-- main start -->
     <main class=" w-full min-width-[100px] h-screen z-10  bg-[#0b0f19] overflow-x-auto sm:w-full">
 
+        <!-- screen : start game -->
         <section class="absolute  w-full h-screen bg-[ rgba(16, 24, 48, 0.85)] h-full flex justify-center items-center shadow-green-300">
             <div class="">
+
+                <!-- panel : image -->
                 <div class="flex justify-around items-start ">
                     <img src="image/logo-icso.png" alt="logo icso" width="80" class="image-anim p-2 h-[80px] rounded-full border-white border-2 bg-white ">
-                    <img src="image/logo.png" alt="logo smk informatika" width="100" height="100" class=" p-2 rounded-full border-white border-2 bg-gray-100">
+                    <img src="image/logo.png" alt="logo smk informatika" width="100" height="100" class=" p-2 rounded-full border-white border-2 bg-gray-100 hover:scale-105">
                     <img src="image/logo-focusmedia.png" alt="logo focus media" width="80" class="image-anim p-2 h-[80px] rounded-full border-white border-2 ">
                 </div>
 
+                <!-- panel : title -->
                 <div class="title flex justify-center">
                     <img src="image/title.png" alt="" class="object-center translate-y-[40px] max-w-[300px]">
                 </div>
-                <div class="game-panel">
-                    
+
+                <!-- panel : form -->
+                <div class="game-panel">    
                     <div class="grid mt-4">
+
+                        <!-- input : username -->
                         <label for="input-username" class="lg-text text-white my-2">Nama Siswa</label>
                         <input type="text" class="neon-input rounded-lg bg-blue-950" placeholder="Nama Lengkap">
-                        <!-- <input type="text" name="" id="input-username" class="mb-2"> -->
 
-
+                        <!-- input : Nama Gugus -->
                         <label for="input-gugus" class="lg-text  text-white my-2 ">Gugus</label>
-                        <!-- <input type="text" name="" id="input-gugus" class="mb-2"> -->
                         <input type="text" class="neon-input rounded-lg bg-blue-950" placeholder="Gugus Berapa">
 
                         <!-- button : submit -->
@@ -79,8 +87,10 @@
             </div>
         </section> 
 
+        <!-- screen : play game -->
         <section class="absolute w-full h-screen z-10">
-
+            
+            <!-- area timer -->
             <div class="grid justify-items-center align-center">
                 <div class="tiang-timer">
                     <div class="border-x-8 border-gray-800 h-12 w-32"></div>
@@ -88,12 +98,12 @@
                 <div class="bg-black text-white p-4 text-6xl w-[200px]  font-['Digital'] text-center border-4 border-gray-700 rounded-xl font-['Digital'] text-shadow shadow-gray-600 z-10">
                     <div id="timerDisplay">00:30</div>
                 </div>
-
                 <div class="bg-black text-white p-1 text-3xl font-['Digital'] w-[80px] text-center border-4 border-gray-700 rounded-lg font-['Digital'] text-shadow shadow-gray-600 ">
                     <div id="score-point">0</div> 
                 </div>
             </div>
             
+            <!-- area : button press -->
             <div class="h-1/2 grid  mt-10">
                 <div class="flex justify-center align-center items-center">
                     <div class="border-y-8 border-gray-800 h-48 w-[50%]"></div>
