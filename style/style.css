@@ -1,88 +1,153 @@
-/* Center the button on the page for this example */
-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: #2c3e50;
-  margin: 0;
+@font-face {
+  font-family: 'Digital';
+  src: url('font/DS-DIGI.TTF');
 }
 
+.shadow-gray-600 {
+  box-shadow: 0 -16px 0 #444;
+}
+
+.text-shadow {
+  text-shadow: 0 0 10px #00ffcc;
+}
+
+.btn-3d {
+  padding: 16px 32px;
+  font-size: 18px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.05s, box-shadow 0.05s;
+  position: relative;
+  outline: none;
+}
+
+.btn-green {
+  background-color: #27ae60;
+  color: white;
+  box-shadow: 0 6px 0 #1e8449;
+}
+
+.input-3d,
+.select-3d {
+  padding: 12px 16px;
+  font-size: 16px;
+  border-radius: 8px;
+  border: none;
+  background-color: #f0f0f0;
+  box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.input-3d:focus,
+.select-3d:focus {
+  background-color: #ffffff;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3), 0 0 5px rgba(52, 152, 219, 0.5);
+}
+
+.select-3d {
+  appearance: none;
+  cursor: pointer;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="black" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+}
+
+.btn-container {
+  background: repeating-linear-gradient(45deg,
+      #ffcc00,
+      #ffcc00 20px,
+      #000 20px,
+      #444 40px);
+  padding: 15px;
+
+  border-radius: 1rem;
+  display: inline-block;
+  box-shadow: 0 16px 0 #000;
+}
 
 .btn-content {
-    background: #222;
-    padding: 0 0.5rem 1.25rem;
-    border-radius: 999px;
+  background: #222;
+  padding: 0 0.5rem 1.25rem;
+  border-radius: 999px;
 }
 
 .red-3d-button {
-  width: 200px;
-  height: 200px;
+  width: 300px;
+  height: 300px;
   border-radius: 50%;
   border: none;
   background: radial-gradient(circle at 30% 30%, #ff4d4d, #c0392b);
-  box-shadow: 
-    0 10px 0 #8b0000,                  /* The dark red 3D edge */
-    0 12px 20px rgba(0, 0, 0, 0.4),    /* The shadow cast on the floor */
-    inset 0 -5px 15px rgba(0, 0, 0, 0.2); /* Inner shadow for depth */
+  box-shadow:
+    0 20px 0 #8b0000,
+    /* The dark red 3D edge */
+    0 12px 20px rgba(0, 0, 0, 0.4),
+    /* The shadow cast on the floor */
+    inset 0 -5px 15px rgba(0, 0, 0, 0.2);
+  /* Inner shadow for depth */
   color: white;
   font-family: Arial, sans-serif;
-  font-size: 24px;
+  font-size: 32px;
   font-weight: bold;
   letter-spacing: 2px;
   cursor: pointer;
+  transform: translateY(-10px);
   transition: all 0.1s ease;
 }
 
 .red-3d-button:active {
   transform: translateY(10px);
-  box-shadow: 
-    0 0 0 #8b0000, 
-    0 3px 5px rgba(0, 0, 0, 0.4), 
+  box-shadow:
+    0 0 0 #8b0000,
+    0 3px 5px rgba(0, 0, 0, 0.4),
     inset 0 -5px 15px rgba(0, 0, 0, 0.2);
 }
 
-
-.btn-box {
-    background: #222;
-    padding: 0 0.5rem 1.25rem;
-    border-radius: 16px;
+.game-panel {
+  background: rgba(16, 24, 48, 0.85);
+  /* Transparan gelap */
+  border: 2px solid #00ffcc;
+  border-radius: 12px;
+  padding: 40px;
+  box-shadow: 0 0 20px rgba(0, 255, 204, 0.3), inset 0 0 15px rgba(0, 255, 204, 0.2);
+  text-align: center;
+  width: 350px;
 }
 
-
-.red-box-button {
-  /* Shape it into a perfect circle */
-  width: 200px;
-  height: 200px;
-  border-radius: 12px;
+.btn-cyber {
+  position: relative;
+  background: linear-gradient(135deg, #0055ff, #00a3ff);
+  color: #ffffff;
   border: none;
-  
-  /* Give it a red surface with a slight highlight to look spherical */
-  background: radial-gradient(circle at 30% 30%, #ff4d4d, #c0392b);
-  
-  /* Create the 3D thickness and drop shadow */
-  box-shadow: 
-    0 10px 0 #8b0000,                  /* The dark red 3D edge */
-    0 12px 20px rgba(0, 0, 0, 0.4),    /* The shadow cast on the floor */
-    inset 0 -5px 15px rgba(0, 0, 0, 0.2); /* Inner shadow for depth */
-    
-  /* Text styling */
-  color: white;
-  font-family: Arial, sans-serif;
-  font-size: 24px;
+  padding: 15px 30px;
+  font-size: 16px;
+  font-family: 'Orbitron', sans-serif;
   font-weight: bold;
+  text-transform: uppercase;
   letter-spacing: 2px;
+  border-radius: 8px;
   cursor: pointer;
-  
-  /* Smooth animation when the button is clicked */
+  width: 100%;
+  margin-top: 10px;
+
+  /* Efek 3D Tebal di Bawah Tombol */
+  box-shadow: 0 6px 0 #0033aa, 0 12px 20px rgba(0, 85, 255, 0.4);
   transition: all 0.1s ease;
 }
 
-.red-box-button:active {
+/* Efek Hover (Saat Kursor di Atas Tombol) */
+.btn-cyber:hover {
+  background: linear-gradient(135deg, #0066ff, #00bfff);
+  box-shadow: 0 6px 0 #0044cc, 0 12px 25px rgba(0, 255, 204, 0.5);
+}
 
-  transform: translateY(10px);
-  box-shadow: 
-    0 0 0 #8b0000, 
-    0 3px 5px rgba(0, 0, 0, 0.4), 
-    inset 0 -5px 15px rgba(0, 0, 0, 0.2);
+/* Efek Active (Saat Tombol Diklik / Ditekan Masuk) */
+.btn-cyber:active {
+  box-shadow: 0 2px 0 #0033aa, 0 4px 10px rgba(0, 85, 255, 0.4);
+  transform: translateY(4px);
+  /* Tombol turun seolah-olah ambles ke dalam */
 }
