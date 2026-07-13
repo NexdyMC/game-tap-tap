@@ -119,35 +119,36 @@
 }
 
 .btn-cyber {
-  position: relative;
-  background: linear-gradient(135deg, #0055ff, #00a3ff);
-  color: #ffffff;
-  border: none;
-  padding: 15px 30px;
-  font-size: 16px;
+  /* position: relative; */
+  /* background: linear-gradient(135deg, #0055ff, #00a3ff); */
+  /* color: #ffffff; */
+  /* border: none; */
+  /* padding: 15px 30px; */
+  /* font-size: 16px; */
   font-family: 'Orbitron', sans-serif;
-  font-weight: bold;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  border-radius: 8px;
-  cursor: pointer;
-  width: 100%;
-  margin-top: 10px;
+  /* font-weight: bold; */
+  /* text-transform: uppercase; */
+  /* letter-spacing: 2px; */
+  /* border-radius: 8px; */
+  /* cursor: pointer; */
+  /* width: 100%; */
+  /* margin-top: 10px; */
 
   /* Efek 3D Tebal di Bawah Tombol */
-  box-shadow: 0 6px 0 #0033aa, 0 12px 20px rgba(0, 85, 255, 0.4);
+  /* box-shadow: 0 6px 0 #0033aa, 
+  0 12px 20px rgba(0, 85, 255, 0.4); */
   transition: all 0.1s ease;
 }
 
 /* Efek Hover (Saat Kursor di Atas Tombol) */
 .btn-cyber:hover {
-  background: linear-gradient(135deg, #0066ff, #00bfff);
-  box-shadow: 0 6px 0 #0044cc, 0 12px 25px rgba(0, 255, 204, 0.5);
+  /* background: linear-gradient(135deg, #0066ff, #00bfff); */
+  /* box-shadow: 0 6px 0 #0044cc, 0 12px 25px rgba(0, 255, 204, 0.5); */
 }
 
 /* Efek Active (Saat Tombol Diklik / Ditekan Masuk) */
 .btn-cyber:active {
-  box-shadow: 0 2px 0 #0033aa, 0 4px 10px rgba(0, 85, 255, 0.4);
-  transform: translateY(4px);
+  /* box-shadow: 0 2px 0 #0033aa, 0 4px 10px rgba(0, 85, 255, 0.4); */
+  /* transform: translateY(4px); */
   /* Tombol turun seolah-olah ambles ke dalam */
 }
