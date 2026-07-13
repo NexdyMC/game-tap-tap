@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panel Shadow Effect</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  /* Panel pakai CSS variable --glow buat nyimpen warna shadow saat ini.
+     Nilainya di-update lewat JS setiap kali button di-tap. */
+  .panel{
+    --glow: rgba(0,0,0,0);
+    box-shadow: 0 0 0 0 var(--glow);
+    transition: box-shadow .25s ease-out; /* nyala: cepat & tegas */
+  }
+
+  /* Saat fade-out (nggak di-tap lagi selama 3 detik), transisinya
+     dibuat lebih lambat supaya kesannya "meredup", bukan tiba-tiba hilang. */
+  .panel.fading{
+    transition: box-shadow 1s ease-in;
+  }
+
+  .btn-active{
+    transform: scale(0.96);
+  }
+</style>
+</head>
+<body class="min-h-screen bg-slate-950 flex flex-col items-center justify-center gap-10">
+
+  <!-- PANEL -->
+  <div id="panel" class="panel w-72 h-40 rounded-2xl bg-slate-900 border border-slate-700 flex items-center justify-center">
+    <span class="text-slate-400 text-sm tracking-widest uppercase">Panel</span>
+  </div>
+
+  <!-- BUTTON -->
+  <button id="btn"
+    class="px-8 py-3 rounded-xl bg-slate-800 hover:bg-slate-700 text-white font-semibold tracking-wide transition-all active:scale-95">
+    Mainkan Efek
+  </button>
+
+<script>
+  const panel = document.getElementById('panel');
+  const btn = document.getElementById('btn');
+
+  // Daftar warna yang akan dipakai bergantian setiap kali tombol di-tap.
+  const colors = [
+    'rgba(34,211,238,0.9)',  // cyan
+    'rgba(250,204,21,0.9)',  // kuning
+    'rgba(74,222,128,0.9)'   // hijau
+  ];
+  let colorIndex = -1;    // posisi warna saat ini di array
+  let idleTimer = null;   // timer yang matiin glow kalau nggak di-tap lagi
+
+  btn.addEventListener('click', () => {
+    // 1. Kalau sebelumnya ada timer yang lagi nunggu buat matiin glow,
+    //    batalkan dulu — karena user masih aktif nge-tap.
+    if (idleTimer) clearTimeout(idleTimer);
+
+    // 2. Ambil warna berikutnya dari daftar (muter balik ke awal kalau habis)
+    colorIndex = (colorIndex + 1) % colors.length;
+    const nextColor = colors[colorIndex];
+
+    // 3. Pasang transisi "cepat" (bukan fading) supaya perpindahan warna
+    //    kelihatan tegas/instan tiap kali di-tap.
+    panel.classList.remove('fading');
+    panel.style.setProperty('--glow', nextColor);
+    panel.style.boxShadow = `0 0 30px 6px ${nextColor}`;
+
+    // 4. Set ulang timer 3 detik. Ini yang bikin shadow TETAP menyala
+    //    selama user terus nge-tap (timer selalu di-reset tiap klik),
+    //    dan baru redup kalau sudah 3 detik tidak ada tap sama sekali.
+    idleTimer = setTimeout(() => {
+      panel.classList.add('fading');      // ganti ke transisi lambat (meredup)
+      panel.style.boxShadow = '0 0 0 0 rgba(0,0,0,0)';
+      idleTimer = null;
+    }, 3000);
+  });
+</script>
+
+</body>
+</html>

@@ -17,30 +17,38 @@
   font-family: 'Digital';
   src: url('font/DS-DIGI.TTF');
 }
+
+@media (max-width: 1024px){
+    #amination {display: none;}
+    #net{ display:none; }
+    .bokeh {display: none;}
+}
+
     </style>
 </head>
 <body class="hero bg-[#050c18] overflow-x-hidden flex justify-center items-center ">
-    
-    <canvas id="net"></canvas>
-    <div class="bokeh"
-        style="width:140px;height:140px; left:6%; top:32%; background:radial-gradient(circle,var(--red) 0%, transparent 70%); animation-delay:0s;">
-    </div>
-    <div class="bokeh"
-        style="width:90px;height:90px; left:14%; top:58%; background:radial-gradient(circle,var(--red-soft) 0%, transparent 70%); animation-delay:2s;">
-    </div>
-    <div class="bokeh"
-        style="width:110px;height:110px; right:10%; top:20%; background:radial-gradient(circle,var(--red) 0%, transparent 70%); animation-delay:4s;">
-    </div>
-    <div class="bokeh"
-        style="width:70px;height:70px; right:22%; bottom:14%; background:radial-gradient(circle,var(--red-soft) 0%, transparent 70%); animation-delay:1s;">
-    </div>
-    <div class="bokeh"
-        style="width:160px;height:160px; left:42%; bottom:6%; background:radial-gradient(circle,var(--node) 0%, transparent 72%); opacity:.4; animation-delay:3s;">
+    <div id="amination">
+        <canvas id="net"></canvas>
+        <div class="bokeh"
+            style="width:140px;height:140px; left:6%; top:32%; background:radial-gradient(circle,var(--red) 0%, transparent 70%); animation-delay:0s;">
+        </div>
+        <div class="bokeh"
+            style="width:90px;height:90px; left:14%; top:58%; background:radial-gradient(circle,var(--red-soft) 0%, transparent 70%); animation-delay:2s;">
+        </div>
+        <div class="bokeh"
+            style="width:110px;height:110px; right:10%; top:20%; background:radial-gradient(circle,var(--red) 0%, transparent 70%); animation-delay:4s;">
+        </div>
+        <div class="bokeh"
+            style="width:70px;height:70px; right:22%; bottom:14%; background:radial-gradient(circle,var(--red-soft) 0%, transparent 70%); animation-delay:1s;">
+        </div>
+        <div class="bokeh"
+            style="width:160px;height:160px; left:42%; bottom:6%; background:radial-gradient(circle,var(--node) 0%, transparent 72%); opacity:.4; animation-delay:3s;">
+        </div>
     </div>
 
-    <main class="max-w-[480px] w-full min-width-[100px] h-screen z-10  bg-[#0b0f19] overflow-x-auto">
+    <main class=" w-full min-width-[100px] h-screen z-10  bg-[#0b0f19] overflow-x-auto sm:w-full">
 
-        <section class="absolute max-w-[480px] w-full h-screen bg-[ rgba(16, 24, 48, 0.85)] h-full flex justify-center items-center" style="box-shadow: 0 0 20px rgba(0, 255, 204, 0.3), inset 0 0 15px rgba(0, 255, 204, 0.2); ">
+        <section class="absolute  w-full h-screen bg-[ rgba(16, 24, 48, 0.85)] h-full flex justify-center items-center shadow-green-300">
             <div class="">
                 <div class="flex justify-around items-start ">
                     <img src="image/logo-icso.png" alt="logo icso" width="80" class="image-anim p-2 h-[80px] rounded-full border-white border-2 bg-white ">
@@ -71,7 +79,7 @@
             </div>
         </section> 
 
-        <section class="absolute max-w-[480px] w-full h-screen z-10" style="box-shadow: 0 0 20px rgba(0, 255, 204, 0.3), inset 0 0 15px rgba(0, 255, 204, 0.2);">
+        <section class="absolute w-full h-screen z-10">
 
             <div class="grid justify-items-center align-center">
                 <div class="tiang-timer">
@@ -82,16 +90,16 @@
                 </div>
 
                 <div class="bg-black text-white p-1 text-3xl font-['Digital'] w-[80px] text-center border-4 border-gray-700 rounded-lg font-['Digital'] text-shadow shadow-gray-600 ">
-                    <div id="score-point">0000</div> 
+                    <div id="score-point">0</div> 
                 </div>
             </div>
             
-            <div class="h-1/2 grid   mt-10">
+            <div class="h-1/2 grid  mt-10">
                 <div class="flex justify-center align-center items-center">
                     <div class="border-y-8 border-gray-800 h-48 w-[50%]"></div>
-                    <div class="p-4 rounded-2xl btn-container">
-                        <div class="btn-content">
-                            <button class="red-3d-button btn-content" id="btn-press-poin" >Press Me</button>
+                    <div class="p-4 rounded-2xl btn-container inline-block p-4 rounded-2xl shadow-[0_16px_0_#000]">
+                        <div class="bg-zinc-800 pt-0 pb-5 px-2 rounded-full">
+                            <button class="red-3d-button bg-gradient-red w-[300px] h-[300px] border-hidden  rounded-full shadow-3d-red text-white btn-content text-4xl font-bold cursor-pointer translate-y-[-10px] active:translate-y-[10px]" id="btn-press-poin" >Press Me</button>
                         </div>
                     </div>
                     <div class="border-y-8 border-gray-800 h-48 w-[50%]"></div>

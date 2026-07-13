@@ -21,7 +21,7 @@ var countdown = setInterval(function() {
         clearInterval(countdown); // Hentikan interval agar tidak negatif
         display.innerHTML = "00:00";
         stoppoint = true
-        alert("Waktu telah berakhir!");
+        // alert("Waktu telah berakhir!");
     }
 
 }, 1000);
