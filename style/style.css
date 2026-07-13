@@ -153,28 +153,48 @@
   /* Tombol turun seolah-olah ambles ke dalam */
 }
 
-.input-3d {
-  /* Dimensions and spacing */
-  padding: 12px 16px;
-  /* width: 300px; */
-  font-size: 16px;
-  
-  /* Structure */
-  border: 2px solid #333;
-  border-radius: 8px;
+.neon-input {
+  /* Dasar Input */
+  /* background: #0d0d0d; */
+  color: #00ffcc; /* Warna neon utama */
+  padding: 0.75rem 1rem;
+  font-size: 18px;
+  border: 2px solid #00ffcc;
+  border-radius: 5px;
   outline: none;
-  background-color: #ffffff;
+  /* width: 300px; */
   
-  /* The 3D Effect */
-  /* This creates a hard shadow at the bottom right to make it look raised */
-  box-shadow: 4px 4px 0px 0px #333;
-  
-  /* Smooth transition for interaction */
-  transition: all 0.2s ease;
+  /* Efek Neon (Glow) */
+  box-shadow: 0 0 5px #00ffcc, 0 0 10px #00ffcc;
+  transition: all 0.3s ease;
 }
 
-/* Active/Focus state: Pushing the button down */
-.input-3d:focus {
-  transform: translate(2px, 2px);
-  box-shadow: 2px 2px 0px 0px #333;
+/* Efek saat diklik/fokus */
+.neon-input:focus {
+  border-color: #ffffff;
+  color: #ffffff;
+  /* Glow menjadi lebih terang saat diklik */
+  box-shadow: 0 0 10px #00ffcc, 0 0 20px #00ffcc, 0 0 30px #00ffcc;
+}
+
+/* Style untuk placeholder */
+.neon-input::placeholder {
+  color: rgba(0, 255, 204, 0.5);
+}
+.image-anim{
+    animation: floating 5s infinite ease-in-out;
+}
+
+@keyframes floating{
+    0%{
+        transform: translateY(0);
+    }
+
+    50%{
+        transform: translateY(20px);
+    }
+
+    100%{
+        transform: translateY(0);
+    }
 }
