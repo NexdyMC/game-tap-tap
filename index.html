@@ -4,18 +4,43 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Game Tap Tap</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <!-- website : icon -->
     <!-- <link rel="shortcut icon" type="x-icon" href="icon.png"> -->
     <!-- cdn : tailwind -->
     <script src="js/tailwind.js"></script>
     <script src="tailwind.config.js"></script>
     <link rel="stylesheet" href="style/style.css">
+    <style>
+@font-face {
+  font-family: 'Digital';
+  src: url('font/DS-DIGI.TTF');
+}
+    </style>
 </head>
-<body class="bg-black flex justify-center items-center ">
+<body class="hero bg-[#050c18] overflow-x-hidden flex justify-center items-center ">
+    
+    <canvas id="net"></canvas>
+    <div class="bokeh"
+        style="width:140px;height:140px; left:6%; top:32%; background:radial-gradient(circle,var(--red) 0%, transparent 70%); animation-delay:0s;">
+    </div>
+    <div class="bokeh"
+        style="width:90px;height:90px; left:14%; top:58%; background:radial-gradient(circle,var(--red-soft) 0%, transparent 70%); animation-delay:2s;">
+    </div>
+    <div class="bokeh"
+        style="width:110px;height:110px; right:10%; top:20%; background:radial-gradient(circle,var(--red) 0%, transparent 70%); animation-delay:4s;">
+    </div>
+    <div class="bokeh"
+        style="width:70px;height:70px; right:22%; bottom:14%; background:radial-gradient(circle,var(--red-soft) 0%, transparent 70%); animation-delay:1s;">
+    </div>
+    <div class="bokeh"
+        style="width:160px;height:160px; left:42%; bottom:6%; background:radial-gradient(circle,var(--node) 0%, transparent 72%); opacity:.4; animation-delay:3s;">
+    </div>
 
-    <main class="max-w-[480px] w-full min-width-[100px] h-screen bg-[#0b0f19]">
+    <main class="max-w-[480px] w-full min-width-[100px] h-screen z-10  bg-[#0b0f19] overflow-x-auto">
 
-        <section class="h-screen bg-[ rgba(16, 24, 48, 0.85)] h-full flex justify-center items-center" style="box-shadow: 0 0 20px rgba(0, 255, 204, 0.3), inset 0 0 15px rgba(0, 255, 204, 0.2); ">
+        <section class="absolute max-w-[480px] w-full h-screen bg-[ rgba(16, 24, 48, 0.85)] h-full flex justify-center items-center" style="box-shadow: 0 0 20px rgba(0, 255, 204, 0.3), inset 0 0 15px rgba(0, 255, 204, 0.2); ">
             <div class="">
                 <div class="flex justify-around items-start ">
                     <img src="image/logo-icso.png" alt="logo icso" width="80" class="image-anim p-2 h-[80px] rounded-full border-white border-2 bg-white ">
@@ -27,8 +52,6 @@
                     <img src="image/title.png" alt="" class="object-center translate-y-[40px] max-w-[300px]">
                 </div>
                 <div class="game-panel">
-                    <!-- <p class="text-3xl text-white font-bold text-center">Game Tap Tap</p> -->
-                    <!-- <p class="text-2xl text-white font-bold text-center">Nexdy</p> -->
                     
                     <div class="grid mt-4">
                         <label for="input-username" class="lg-text text-white my-2">Nama Siswa</label>
@@ -48,28 +71,33 @@
             </div>
         </section> 
 
-        <!-- <section class="h-screen" style="box-shadow: 0 0 20px rgba(0, 255, 204, 0.3), inset 0 0 15px rgba(0, 255, 204, 0.2);">
+        <section class="absolute max-w-[480px] w-full h-screen z-10" style="box-shadow: 0 0 20px rgba(0, 255, 204, 0.3), inset 0 0 15px rgba(0, 255, 204, 0.2);">
+
             <div class="grid justify-items-center align-center">
-                <div class="border-x-8 border-gray-800 h-12 w-32"></div>
-                <div class="bg-black text-white p-4 text-6xl w-[200px] text-center border-4 border-gray-700 rounded-xl font-['Digital'] text-shadow shadow-gray-600 z-10">
+                <div class="tiang-timer">
+                    <div class="border-x-8 border-gray-800 h-12 w-32"></div>
+                </div>
+                <div class="bg-black text-white p-4 text-6xl w-[200px]  font-['Digital'] text-center border-4 border-gray-700 rounded-xl font-['Digital'] text-shadow shadow-gray-600 z-10">
                     <div id="timerDisplay">00:30</div>
                 </div>
 
-                <div class="bg-black text-white p-1 text-3xl w-[80px] text-center border-4 border-gray-700 rounded-lg font-['Digital'] text-shadow shadow-gray-600 ">
+                <div class="bg-black text-white p-1 text-3xl font-['Digital'] w-[80px] text-center border-4 border-gray-700 rounded-lg font-['Digital'] text-shadow shadow-gray-600 ">
                     <div id="score-point">0000</div> 
                 </div>
             </div>
             
-            <div class="flex justify-center align-center items-center mt-10">
-                <div class="border-y-8 border-gray-800 h-48 w-32"></div>
-                <div class="p-4 rounded-2xl btn-container">
-                    <div class="btn-content">
-                        <button class="red-3d-button btn-content" id="btn-press-poin" >Press Me</button>
+            <div class="h-1/2 grid   mt-10">
+                <div class="flex justify-center align-center items-center">
+                    <div class="border-y-8 border-gray-800 h-48 w-[50%]"></div>
+                    <div class="p-4 rounded-2xl btn-container">
+                        <div class="btn-content">
+                            <button class="red-3d-button btn-content" id="btn-press-poin" >Press Me</button>
+                        </div>
                     </div>
+                    <div class="border-y-8 border-gray-800 h-48 w-[50%]"></div>
                 </div>
-                <div class="border-y-8 border-gray-800 h-48 w-32"></div>
             </div>
-        </section> -->
+        </section>
 
         <!-- <section class="h-screen bg-[ rgba(16, 24, 48, 0.85)] h-full flex justify-center items-center" style="box-shadow: 0 0 20px rgba(0, 255, 204, 0.3), inset 0 0 15px rgba(0, 255, 204, 0.2); ">
             <div class="">
@@ -89,6 +117,7 @@
 
     <!-- script js --> 
     <script src="js/timer.js"></script> 
+    <!-- <script src="js/anim.js"></script> -->
 </body>
 </html>
 <!-- perintah dasar github -->
