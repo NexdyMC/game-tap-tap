@@ -95,5 +95,5 @@ btn_press.addEventListener("click", function () {
     } else {
         poin++;
     }
-    poinscore.innerHTML = poin;
+    poinscore.innerHTML = `Point ${poin}`;
 })
