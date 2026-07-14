@@ -1,61 +1,64 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Zoom Screen Transition + Loading</title>
-<style>
-  *{ margin:0; padding:0; box-sizing:border-box; }
-  html,body{ height:100%; overflow:hidden; background:#000; font-family:sans-serif; }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zoom Screen Transition + Loading</title>
+  <script src="../js/tailwind.js"></script>
+  <script src="../tailwind.config.js"></script>
+  <link rel="stylesheet" href="../style/style.css">
+  <style>
+    *{ margin:0; padding:0; box-sizing:border-box; }
+    html,body{ height:100%; overflow:hidden; background:#000; font-family:sans-serif; }
 
-  .screen{
-    position:fixed;
-    inset:0;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    flex-direction:column;
-    gap:20px;
-    color:white;
-    transform: scale(0.6);
-    opacity:0;
-    pointer-events:none;
-    z-index:1;
-    transition: transform .6s cubic-bezier(.22,1,.36,1),
-                opacity .5s ease;
-  }
-  .screen.active{
-    transform: scale(1);
-    opacity:1;
-    pointer-events:auto;
-    z-index:2;
-  }
+    .screen{
+      position:fixed;
+      inset:0;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      flex-direction:column;
+      gap:20px;
+      color:white;
+      transform: scale(0.6);
+      opacity:0;
+      pointer-events:none;
+      z-index:1;
+      transition: transform .6s cubic-bezier(.22,1,.36,1),
+                  opacity .5s ease;
+    }
+    .screen.active{
+      transform: scale(1);
+      opacity:1;
+      pointer-events:auto;
+      z-index:2;
+    }
 
-  .screen-main{ background:radial-gradient(circle at 50% 40%, #1e293b, #020617); }
-  .screen-play{ background:radial-gradient(circle at 50% 40%, #164e63, #020617); }
-  .screen-final{ background:radial-gradient(circle at 50% 40%, #365314, #020617); }
-  .screen-loading{ background:#020617; z-index:3; }
+    .screen-main{ background:radial-gradient(circle at 50% 40%, #1e293b, #020617); }
+    .screen-play{ background:radial-gradient(circle at 50% 40%, #164e63, #020617); }
+    .screen-final{ background:radial-gradient(circle at 50% 40%, #365314, #020617); }
+    .screen-loading{ background:#020617; z-index:3; }
 
-  .loading-bar-track{
-    width:260px; height:6px; border-radius:999px;
-    background:rgba(255,255,255,.15); overflow:hidden;
-  }
-  .loading-bar-fill{
-    height:100%; width:0%;
-    background:linear-gradient(90deg,#22d3ee,#facc15,#4ade80);
-    border-radius:999px;
-  }
-  .loading-percent{ font-size:.8rem; letter-spacing:.1em; color:rgba(255,255,255,.6); }
+    .loading-bar-track{
+      width:260px; height:6px; border-radius:999px;
+      background:rgba(255,255,255,.15); overflow:hidden;
+    }
+    .loading-bar-fill{
+      height:100%; width:0%;
+      background:linear-gradient(90deg,#22d3ee,#facc15,#4ade80);
+      border-radius:999px;
+    }
+    .loading-percent{ font-size:.8rem; letter-spacing:.1em; color:rgba(255,255,255,.6); }
 
-  h1{ font-size:2rem; letter-spacing:.05em; text-transform:uppercase; }
-  button{
-    padding:14px 34px; font-size:1rem; font-weight:600; border:none;
-    border-radius:10px; background:white; color:#111; cursor:pointer;
-    transition:transform .15s ease;
-  }
-  button:hover{ transform:scale(1.05); }
-  button:active{ transform:scale(0.95); }
-</style>
+    h1{ font-size:2rem; letter-spacing:.05em; text-transform:uppercase; }
+    button{
+      padding:14px 34px; font-size:1rem; font-weight:600; border:none;
+      border-radius:10px; background:white; color:#111; cursor:pointer;
+      transition:transform .15s ease;
+    }
+    button:hover{ transform:scale(1.05); }
+    button:active{ transform:scale(0.95); }
+  </style>
 </head>
 <body>
 
@@ -68,18 +71,82 @@
   </div>
 
   <div class="screen screen-main" data-screen="main">
-    <h1>Main Menu</h1>
-    <button data-target="play">screen play</button>
+    <!-- screen : start game -->
+    <section class="absolute  w-full h-screen bg-[ rgba(16, 24, 48, 0.85)] h-full flex justify-center items-center shadow-green-300">
+        <div class="">
+
+            <!-- panel : image -->
+            <div class="flex justify-around items-start ">
+                <img src="../image/logo-icso.png" alt="contoh logo" width="80" class="image-anim p-2 h-[80px] rounded-full border-white border-2 bg-white ">
+                <img src="../image/logo.png" alt="contoh logo" width="100" height="100" class=" p-2 rounded-full border-white border-2 bg-gray-100 hover:scale-105">
+                <img src="../image/logo-focusmedia.png" alt="contoh logo" width="80" class="image-anim p-2 h-[80px] rounded-full border-white border-2 ">
+            </div>
+
+            <!-- panel : title -->
+            <div class="title flex justify-center">
+                <img src="../image/title.png" alt="" class="object-center translate-y-[40px] max-w-[300px]">
+            </div>
+
+            <!-- panel : form -->
+            <div class="game-panel">    
+                <div class="grid mt-4">
+
+                    <!-- input : username -->
+                    <label for="input-username" class="lg-text text-white my-2">Nama Siswa</label>
+                    <input type="text" class="neon-input rounded-lg bg-blue-950" placeholder="Nama Lengkap">
+
+                    <!-- input : Nama Gugus -->
+                    <label for="input-gugus" class="lg-text  text-white my-2 ">Gugus</label>
+                    <input type="text" class="neon-input rounded-lg bg-blue-950" placeholder="Gugus Berapa">
+
+                    <!-- button : submit -->
+                    <button data-target="play" class="relative bg-gradient-to-r from-[#0055ff] to-[#00a3ff] text-white border-hidden py-[15px] px-6 text-base font-bold uppercase tracking-widest rounded-lg cursor-pointer w-full mt-4 shadow-3d-blue hover:shadow-3d-blue-hover hover:bg-gradient-to-r hover:from-[#0066ff] hover:to-[#00bfff] active:shadow-3d-blue-active active:translate-y-[4px] " >Start Game</button>
+                </div>
+
+            </div>
+        </div>
+    </section> 
   </div>
 
   <div class="screen screen-play" data-screen="play">
-    <h1>Play</h1>
-    <button data-target="final">screen final</button>
+
+    <!-- screen : play game -->
+    <section class="absolute w-full h-screen z-10">
+        
+        <!-- area timer -->
+        <div class="grid justify-items-center align-center">
+            <div class="tiang-timer">
+                <div class="border-x-8 border-gray-800 h-12 w-32"></div>
+            </div>
+            <div class="bg-black text-white p-4 text-6xl w-[200px]  font-['Digital'] text-center border-4 border-gray-700 rounded-xl font-['Digital'] text-shadow shadow-gray-600 z-10">
+                <div id="timerDisplay">00:30</div>
+            </div>
+            <div class="bg-black text-white p-1 text-3xl font-['Digital'] w-[80px] text-center border-4 border-gray-700 rounded-lg font-['Digital'] text-shadow shadow-gray-600 ">
+                <div id="score-point">0</div> 
+            </div>
+        </div>
+        
+        <!-- area : button press -->
+        <div class="h-1/2 grid  mt-10">
+            <div class="flex justify-center align-center items-center">
+                <div class="border-y-8 border-gray-800 h-48 w-[50%]"></div>
+                <div class="p-4 rounded-2xl btn-container inline-block p-4 rounded-2xl shadow-[0_16px_0_#000]">
+                    <div class="bg-zinc-800 pt-0 pb-5 px-2 rounded-full">
+                        <button class="red-3d-button bg-gradient-red w-[300px] h-[300px] border-hidden  rounded-full shadow-3d-red text-white btn-content text-4xl font-bold cursor-pointer translate-y-[-10px] active:translate-y-[10px]" id="btn-press-poin" >Press Me</button>
+                    </div>
+                </div>
+                <div class="border-y-8 border-gray-800 h-48 w-[50%]"></div>
+            </div>
+        </div>
+        <button data-target="final">screen main</button>
+    </section>
   </div>
 
   <div class="screen screen-final" data-screen="final">
+  
     <h1>Final</h1>
     <button data-target="main">screen main</button>
+  
   </div>
 
 <script>
