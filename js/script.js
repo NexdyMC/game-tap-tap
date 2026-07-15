@@ -85,13 +85,13 @@ var poin = 0;
 const btn_press = document.getElementById("btn-press-poin");
 const poinscore = document.getElementById("score-point");
 const bestScore = document.getElementById("best-score");
+const inputscore = document.getElementById("input-poin");
 
 btn_press.addEventListener("click", function () {
     if (!stoppoint) poin++;
     poinscore.innerHTML = `Point: ${poin}`;
     bestScore.innerHTML = `Point: ${poin}`;
-
-
+    inputscore.value = poin;
 });
 
 const btn = document.getElementById('btn-play');

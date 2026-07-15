@@ -2,12 +2,13 @@ tailwind.config = {
     theme: {
         extend: {
             Colors: {
-                // --- Warna Skema Neon Biru ---
-                'neon-blue-start': '#0055ff', // Warna gradient dari image_1.png
-                'neon-blue-end': '#00a3ff',   // Warna gradient dari image_1.png
-                'electric-blue': '#00f2ff',   // Warna glow neon yang lebih terang (sesuai glow kotak image_1.png)
+                'screen-main': 'radial-gradient(circle at 50% 40%, #1e293b, #020617)',
+                'screen-play': 'radial-gradient(circle at 50% 40%, #164e63, #020617)',
 
-                // --- Warna Skema Neon Kuning ---
+                'neon-blue-start': '#0055ff', 
+                'neon-blue-end': '#00a3ff',   
+                'electric-blue': '#00f2ff',   
+
                 'neon-yellow-start': '#eab308',
                 'neon-yellow-end': '#ca8a04',
                 'electric-yellow': '#facc15',
