@@ -17,7 +17,7 @@ $data = $db->select("tb_taptap");
     <!-- screen : Leader Board -->
     <section class="bg-screen-main overflow-auto h-screen py-6 text-white">
         <div class="flex justify-center items-center">
-            <img src="image/leaderboard.png" alt="leaderboard" class="max-w-96 w-full min-w-80" >
+            <img src="image/leaderboard.png" alt="leaderboard" class="max-w-96 w-full min-w-80 ">
         </div>
 
         <div class="p-6 flex justify-center">
@@ -52,7 +52,5 @@ $data = $db->select("tb_taptap");
             </div>
         </div>
     </section>
-
-    <script src="tailwind.config.js"></script>
 </body>
 </html>

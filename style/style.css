@@ -10,10 +10,11 @@
   --muted: #8ea3bd;
   --accent: #5fd4ff;
 }
-  @font-face {
-    font-family: 'Digital';
-    src: url(../font/DS-DIGI.TTF);
-  }
+
+@font-face {
+  font-family: 'Digital';
+  src: url(../font/DS-DIGI.TTF);
+}
 
 .text-shadow {
   text-shadow: 0 0 10px #00ffcc;
@@ -64,6 +65,89 @@
   color: rgba(0, 255, 204, 0.5);
 }
 
+.loading-bar-track {
+  width: 260px;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .15);
+  overflow: hidden;
+}
 
+.loading-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #22d3ee, #facc15, #4ade80);
+  border-radius: 999px;
+}
 
+.loading-percent {
+  font-size: .8rem;
+  letter-spacing: .1em;
+  color: rgba(255, 255, 255, .6);
+}
 
+.screen {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+  color: white;
+  transform: scale(0.6);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+  transition: transform .6s cubic-bezier(.22, 1, .36, 1), opacity .5s ease;
+}
+
+.screen.active {
+  transform: scale(1);
+  opacity: 1;
+  pointer-events: auto;
+  z-index: 2;
+}
+
+.screen-main {
+  background: radial-gradient(circle at 50% 40%, #1e293b, #020617);
+}
+
+.screen-play {
+  background: radial-gradient(circle at 50% 40%, #164e63, #020617);
+}
+
+.screen-loading {
+  background: #020617;
+  z-index: 3;
+}
+
+.image-anim {
+  animation: floating 5s infinite ease-in-out;
+}
+
+@keyframes drift {
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(12px, -16px) scale(1.08);
+  }
+}
+
+@keyframes floating {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(20px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
