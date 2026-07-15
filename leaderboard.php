@@ -23,7 +23,7 @@
         </div>
 
         <div class="p-6">
-            <div class="overflow-x-auto border-collapse border-2 border-cyan-400 rounded-2xl shadow-panel-cyan">
+            <div class="overflow-x-auto border-collapse border-2 border-cyan-400 rounded-2xl shadow-panel-cyan max-w-[500px] w-full min-w-96">
                 <table class=" shadow-panel-cyan min-w-full">
                     <thead class="bg-cyan-200/20">
                         <tr>

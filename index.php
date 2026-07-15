@@ -208,7 +208,7 @@
         
         <!-- panel : title -->
         <div class="title flex justify-center">
-          <img src="image/congratulation-2.png" alt="" class="absolute object-center translate-y-[-20px] w-full max-w-[400px]">
+          <img src="image/congratulation-2.png" alt="congratulation" class="absolute object-center translate-y-[-20px] w-full max-w-[400px]">
         </div>
 
         <!-- panel : form -->
