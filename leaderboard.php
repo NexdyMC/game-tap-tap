@@ -1,9 +1,6 @@
 <?php
 include 'sql/conn.php';
-
-// $query = "SELECT * FROM tb_taptap"; 
 $data = $db->select("tb_taptap");
-
 ?>
 <!DOCTYPE html>
 <html lang="id">
@@ -18,14 +15,13 @@ $data = $db->select("tb_taptap");
 </head>
 <body>
     <!-- screen : Leader Board -->
-    <section class="bg-screen-main h-screen py-6 text-white">
+    <section class="bg-screen-main overflow-auto h-screen py-6 text-white">
         <div class="flex justify-center items-center">
-
             <img src="image/leaderboard.png" alt="leaderboard" class="max-w-96 w-full min-w-80" >
         </div>
 
         <div class="p-6 flex justify-center">
-            <div class="overflow-x-auto border-collapse border-2 border-cyan-400 rounded-xl shadow-panel-cyan max-w-[600px] w-full min-w-96">
+            <div class="overflow-auto border-collapse border-2 border-cyan-400 rounded-xl shadow-panel-cyan max-w-[600px] w-full min-w-96">
                 <table class=" shadow-panel-cyan max-w-[600px] w-full min-w-96">
                     <thead class="bg-cyan-300">
                         <tr>
@@ -59,7 +55,7 @@ $data = $db->select("tb_taptap");
     </section>
 
     <script src="tailwind.config.js"></script>
-<?php mysqli_close($conn); ?>
+<?php ?>
 </body>
 
 </html>

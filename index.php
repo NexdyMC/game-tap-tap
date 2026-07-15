@@ -75,6 +75,10 @@ include 'sql/conn.php';
       background: #020617;
       z-index: 3;
     }
+    .image-anim {
+      animation: floating 5s infinite ease-in-out;
+    }
+
     @keyframes drift {
 
       0%,
@@ -140,12 +144,12 @@ include 'sql/conn.php';
             <div class="grid mt-2">
               
               <!-- input : username -->
-              <label for="input-username"  class="lg-text text-base font-semibold text-white pb-2 pt-4">Nama Siswa</label>
+              <label for="input-username"  class="lg-text text-base font-semibold text-white pb-2 pt-4">NAMA SISWA</label>
               <input type="text" id="input-username" name="input-namasiswa" class="text-cyan-400 py-2 px-2 text-md border-2 border-teal-400 rounded-md outline-none shadow-teal-400 duration-300 bg-blue-950/50 focus:border-white focus:text-white focus:shadow-cyan-focus" placeholder="Masukan Nama Kamu" required>
               
               <!-- input : Gugus -->
-              <label for="input-namegugus" class="lg-text text-base font-semibold text-white pb-2 pt-4">Gugus</label>
-              <input type="text" id="input-gugus" name="input-gugus" class="text-cyan-400 py-2 px-2 text-md border-2 border-teal-400 rounded-md outline-none shadow-teal-400 duration-300 bg-blue-950/50 focus:border-white focus:text-white focus:shadow-cyan-focus"  placeholder="Masukan Nama Gugus" required>
+              <label for="input-namegugus" class="lg-text text-base font-semibold text-white pb-2 pt-4">GUGUS</label>
+              <input type="text" id="input-gugus" name="input-gugus" class="text-cyan-400 py-2 px-2 text-md border-2 border-teal-400 rounded-md outline-none shadow-teal-400 duration-300 bg-blue-950/50 focus:border-white focus:text-white focus:shadow-cyan-focus"  placeholder="Masukan Gugus" required>
               
               <!-- button : submit -->
               <button type="button" data-target="play" id="btn-play" class="relative bg-gradient-to-r from-[#0055ff] to-[#00a3ff] text-white border-hidden py-[15px] px-6 text-base font-bold uppercase tracking-widest rounded-lg cursor-pointer w-full mt-4 shadow-3d-blue hover:shadow-3d-blue-hover hover:bg-gradient-to-r hover:from-[#0066ff] hover:to-[#00bfff] active:shadow-3d-blue-active active:translate-y-[4px] ">Start Game</button>
@@ -158,7 +162,7 @@ include 'sql/conn.php';
     
 
     <!-- screen : play game -->
-    <section class="screen screen-play" data-screen="play">
+    <section class="screen bg-screen-play" data-screen="play">
       <div class="w-full h-screen z-10 overflow-hidden">
       
         <!-- area timer -->
@@ -170,7 +174,7 @@ include 'sql/conn.php';
               <div id="timerDisplay">00:30</div>
           </div>
           <div class="bg-black text-white p-1 text-3xl  text-center border-4 border-gray-700 rounded-lg font-digital shadow-timer shadow-gray-600 ">
-              <div id="score-point">Point: 0</div>
+              <div id="score-point">POIN: 0</div>
           </div>
         </div>
 
@@ -220,7 +224,7 @@ include 'sql/conn.php';
 
               <button data-target="play" type="submit" name="btn-submit" class="relative bg-gradient-to-r from-[#0055ff] to-[#00a3ff] text-white border-hidden py-[15px] px-6 text-base font-bold uppercase tracking-widest rounded-lg cursor-pointer w-full mt-4 shadow-3d-blue hover:shadow-3d-blue-hover hover:bg-gradient-to-r hover:from-[#0066ff] hover:to-[#00bfff] active:shadow-3d-blue-active active:translate-y-[4px] ">Save Game</button>
 
-              <a href="leaderboard.php" data-target="play" class="relative bg-gradient-to-r from-[#e3ae10] to-[#facc15] text-white border-hidden py-[15px] px-6 text-base font-bold uppercase tracking-widest rounded-lg cursor-pointer w-full mt-4 shadow-3d-yellow hover:shadow-3d-yellow-hover hover:bg-gradient-to-r hover:from-[#d3a10c] hover:to-[#facc15] active:shadow-3d-yellow-active active:translate-y-[4px]">Score Board</a>
+              <button data-target="play" id="btn-leaderboard" type="submit" name="btn-leaderboard" class="relative bg-gradient-to-r from-[#e3ae10] to-[#facc15] text-white border-hidden py-[15px] px-6 text-base font-bold uppercase tracking-widest rounded-lg cursor-pointer w-full mt-4 shadow-3d-yellow hover:shadow-3d-yellow-hover hover:bg-gradient-to-r hover:from-[#d3a10c] hover:to-[#facc15] active:shadow-3d-yellow-active active:translate-y-[4px]">SCORE BOARD</button>
             </div>
           </div>      
         </div>
@@ -230,17 +234,21 @@ include 'sql/conn.php';
 
   <!-- script : js -->
   <script src="js/script.js"></script>
-
+  <script>
+document.getElementById("btn-leaderboard").addEventListener('click', () => {
+    document.location.href = 'leaderboard.php'
+})
+  </script>
 </body>
 </html>
 
 
 <?php
-if (isset($_POST['btn-submit'])) {
+if (isset($_POST['btn-submit']) || isset($_POST['btn-leaderboard'])) {
   $siswa = trim($_POST['input-namasiswa']);
   $gugus = trim($_POST['input-gugus']);
   $poin  = (int) $_POST['input-poin']; 
-  
+
   $db->insert($siswa, $gugus, $poin);
 }
 ?>

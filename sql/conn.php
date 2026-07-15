@@ -8,7 +8,6 @@
 class MySqlGame {
     private $conn;
 
-    // Konstruktor untuk inisialisasi koneksi saat class dipanggil
     public function __construct($host, $user, $pass, $db) {
         $this->conn = mysqli_connect($host, $user, $pass, $db);
 
@@ -17,14 +16,12 @@ class MySqlGame {
         }
     }
 
-    // Fungsi untuk mengambil data
     public function select($table) {
-        $query = "SELECT * FROM $table ORDER BY poin DESC";
+        $query = "SELECT * FROM $table ORDER BY poin DESC LIMIT 10";
         $result = mysqli_query($this->conn, $query);
         return $result;
     }
 
-    // Fungsi untuk memasukkan data (dengan Prepared Statement)
     public function insert($nama, $gugus, $poin) {
         $stmt = $this->conn->prepare("INSERT INTO tb_taptap (nama, gugus, poin) VALUES (?, ?, ?)");
         $stmt->bind_param("ssi", $nama, $gugus, $poin);
@@ -35,7 +32,6 @@ class MySqlGame {
         return $result;
     }
 
-    // Pastikan menutup koneksi saat objek dihancurkan
     public function __destruct() {
         if ($this->conn) {
             mysqli_close($this->conn);
