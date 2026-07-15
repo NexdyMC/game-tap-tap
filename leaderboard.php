@@ -8,7 +8,7 @@ $data = $db->select("tb_taptap");
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Leader Board | TapTapKuy</title>
+    <title>Leader Board | Tap tap kuy</title>
     <!-- CDN : tailwindcss -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="tailwind.config.js"></script>

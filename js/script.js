@@ -89,8 +89,8 @@ const inputscore = document.getElementById("input-poin");
 
 btn_press.addEventListener("click", function () {
     if (!stoppoint) poin++;
-    poinscore.innerHTML = `Point: ${poin}`;
-    bestScore.innerHTML = `Point: ${poin}`;
+    poinscore.innerHTML = `Poin: ${poin}`;
+    bestScore.innerHTML = `Poin: ${poin}`;
     inputscore.value = poin;
 });
 
