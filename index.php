@@ -1,3 +1,6 @@
+<?php
+include 'sql/conn.php';
+?>
 <!DOCTYPE html>
 <html lang="id">
 <head>

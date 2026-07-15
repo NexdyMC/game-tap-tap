@@ -1,10 +1,10 @@
 <?php
 
 
-$host = 'localhost';
-$user = 'root';
-$pass = '';
-$base = 'db_game';
+$host = 'sql302.infinityfree.com';
+$user = 'if0_42264723';
+$pass = 'OO91F3ohKrW0m';
+$base = 'if0_42264723_db_game';
 
 $conn = mysqli_connect($host, $user, $pass, $base);
 
