@@ -80,22 +80,6 @@ function timertaptap(durasiDetik, displayId = "timerDisplay") {
     }, 1000);
 }
 
-// --- pemetaan urutan sesuai alur kamu ---
-// [loading] -> main : loading singkat pas web dibuka
-transitionWithLoading('main', 3000);
-
-// tombol "mulai main" -> loading 3 menit -> screen play (timer otomatis nyala di dalam transitionWithLoading)
-document.querySelector('[data-target="play"]').addEventListener('click', () => {
-    transitionWithLoading('play', 100); // 3 menit = 180000ms
-});
-
-// tombol lain (misal balik ke main dari mana pun)
-document.querySelectorAll('button[data-target]:not([data-target="play"])').forEach(btn => {
-    btn.addEventListener('click', () => {
-        transitionWithLoading(btn.dataset.target);
-    });
-});
-
 // point counter
 var poin = 0;
 const btn_press = document.getElementById("btn-press-poin");
@@ -106,5 +90,37 @@ btn_press.addEventListener("click", function () {
     if (!stoppoint) poin++;
     poinscore.innerHTML = `Point ${poin}`;
     bestScore.innerHTML = `Point ${poin}`;
+
+
+});
+
+const btn = document.getElementById('btn-play');
+
+btn.addEventListener('click', function () {
+
+});
+
+transitionWithLoading('main', 3000);
+
+// tombol "mulai main" -> loading 3 menit -> screen play (timer otomatis nyala di dalam transitionWithLoading)
+document.querySelector('[data-target="play"]').addEventListener('click', () => {
+    const val1 = document.getElementById('input-username').value.trim();
+    const val2 = document.getElementById('input-gugus').value.trim();
+
+    // Validasi: Cek apakah kedua input memiliki nilai
+    if (val1 !== "" && val2 !== "" && val1 !== " " && val2 !== " " ) {
+        transitionWithLoading('play', 100); // 3 menit = 180000ms
+    } else {
+        // Jika salah satu atau keduanya kosong
+        alert("Peringatan: masukan Nama Siswa dan gugus!");
+    }
+    
+});
+
+// tombol lain (misal balik ke main dari mana pun)
+document.querySelectorAll('button[data-target]:not([data-target="play"])').forEach(btn => {
+    btn.addEventListener('click', () => {
+        transitionWithLoading(btn.dataset.target);
+    });
 });
 
