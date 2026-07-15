@@ -1,21 +1,111 @@
-<?php
-include 'sql/conn.php';
-?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Zoom Screen Transition + Loading</title>
-
+  <title>Tap tap kuy</title>
+  <meta name="theme-color" content="#4285f4">
+  <meta name="application-name" content="GameTapTap">
   <!-- CDN : tailwindcss -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="tailwind.config.js"></script>
   <!-- Link : style css -->
-  <link rel="stylesheet" href="style/style.css">
+  <!-- <link rel="stylesheet" href="style/style.css"> -->
+  <style>
+@font-face {
+  font-family: 'Digital';
+  src: url(font/DS-DIGI.TTF);
+}
+.loading-bar-track {
+  width: 260px;
+  height: 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, .15);
+  overflow: hidden;
+}
+
+.loading-bar-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #22d3ee, #facc15, #4ade80);
+  border-radius: 999px;
+}
+
+.loading-percent {
+  font-size: .8rem;
+  letter-spacing: .1em;
+  color: rgba(255, 255, 255, .6);
+}
+
+.screen {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 20px;
+  color: white;
+  transform: scale(0.6);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+  transition: transform .6s cubic-bezier(.22, 1, .36, 1), opacity .5s ease;
+}
+
+.screen.active {
+  transform: scale(1);
+  opacity: 1;
+  pointer-events: auto;
+  z-index: 2;
+}
+
+.screen-main {
+  background: radial-gradient(circle at 50% 40%, #1e293b, #020617);
+}
+
+.screen-play {
+  background: radial-gradient(circle at 50% 40%, #164e63, #020617);
+}
+
+.screen-final {
+  background: radial-gradient(circle at 50% 40%, #365314, #020617);
+}
+
+.screen-loading {
+  background: #020617;
+  z-index: 3;
+}
+@keyframes drift {
+
+  0%,
+  100% {
+    transform: translate(0, 0) scale(1);
+  }
+
+  50% {
+    transform: translate(12px, -16px) scale(1.08);
+  }
+}
+
+@keyframes floating {
+  0% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(20px);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+  </style>
 
 </head>
-<body>
+<body class="bg-black">
 
   <!-- screen : loading -->
   <div class="screen screen-loading active" data-screen="loading">
@@ -29,43 +119,44 @@ include 'sql/conn.php';
   <!-- screen : start game -->
   <section class="screen screen-main" data-screen="main">
     <div class="absolute w-full h-screen bg-[ rgba(16, 24, 48, 0.85)] h-full flex justify-center items-center shadow-green-300">
-      <div class="block">
+      <div class="grid justify-items-center">
 
         <!-- panel : image -->
-        <div class="flex justify-around items-start ">
+        <div class="flex justify-around items-start pb-8">
           
-          <img src="image/logo-icso.png" alt="contoh logo" width="80" class="image-anim p-2 h-[80px] rounded-full border-white border-2 bg-white duration-300 hover:scale-105">
+          <img src="image/logo-icso.png" alt="contoh logo" width="80" class="image-anim m-2 p-2 h-[80px] rounded-full border-white border-2 bg-white ">
 
-          <img src="image/logo.png" alt="contoh logo" width="100" height="100" class=" p-2 rounded-full border-white border-2 bg-gray-100 duration-300 hover:scale-105">
+          <img src="image/logo.png" alt="contoh logo" width="100" height="100" class=" p-2 rounded-full m-2 d-full border-white border-2 bg-gray-100 ">
           
-          <img src="image/logo-focusmedia.png" alt="contoh logo" width="80" class="image-anim p-2 h-[80px] rounded-full border-white border-2 duration-300 hover:scale-105">
+          <img src="image/logo-focusmedia.png" alt="contoh logo" width="80" class="image-anim m-2 p-2 h-[80px] rounded-full border-white border-2 ">
         </div>
         
         <!-- panel : title -->
-        <div class="title flex justify-center">
-          <img src="image/title.png" alt="" class="object-center translate-y-[50px] max-w-[300px]">
+        <div class="absolute title flex justify-center">
+          <img src="image/title.png" alt="" class="object-center translate-y-[120px] max-w-[280px]">
         </div>
         
         <!-- panel : form -->
-        <div class="bg-[rgba(16, 24, 48, 0.85)] border-2 border-cyan-400 rounded-lg p-10 shadow-panel-cyan text-center">
+        <div class="bg-[rgba(16, 24, 48, 0.85)] border-2 border-cyan-400 rounded-lg p-12 shadow-panel-cyan text-center">
           <div class="grid mt-2">
             
             <!-- input : username -->
             <label for="input-username"  class="lg-text text-base font-semibold text-white pb-2 pt-4">Nama Siswa</label>
-            <input type="text" id="input-username" class="text-cyan-400 py-3 px-4 text-lg border-2 border-teal-400 rounded-md outline-none shadow-teal-400 duration-300 bg-blue-950 focus:border-white focus:text-white focus:shadow-cyan-focus" placeholder="Masukan Nama Kamu">
+            <input type="text" id="input-username" class="text-cyan-400 py-2 px-2 text-md border-2 border-teal-400 rounded-md outline-none shadow-teal-400 duration-300 bg-blue-950/50 focus:border-white focus:text-white focus:shadow-cyan-focus" placeholder="Masukan Nama Kamu" required>
             
-            <!-- input : Nama Gugus -->
-            <label for="input-namegugus" class="lg-text text-base font-semibold text-white pb-2 pt-4">Nama Gugus</label>
-            <input type="text" id="input-namegugus" class="text-cyan-400 py-3 px-4 text-lg border-2 border-teal-400 rounded-md outline-none shadow-teal-400 duration-300 bg-blue-950 focus:border-white focus:text-white focus:shadow-cyan-focus"  placeholder="Masukan Nama Gugus">
+            <!-- input : Gugus -->
+            <label for="input-namegugus" class="lg-text text-base font-semibold text-white pb-2 pt-4">Gugus</label>
+            <input type="text" id="input-gugus" class="text-cyan-400 py-2 px-2 text-md border-2 border-teal-400 rounded-md outline-none shadow-teal-400 duration-300 bg-blue-950/50 focus:border-white focus:text-white focus:shadow-cyan-focus"  placeholder="Masukan Nama Gugus" required>
             
             <!-- button : submit -->
-            <button data-target="play" class="relative bg-gradient-to-r from-[#0055ff] to-[#00a3ff] text-white border-hidden py-[15px] px-6 text-base font-bold uppercase tracking-widest rounded-lg cursor-pointer w-full mt-4 shadow-3d-blue hover:shadow-3d-blue-hover hover:bg-gradient-to-r hover:from-[#0066ff] hover:to-[#00bfff] active:shadow-3d-blue-active active:translate-y-[4px] ">Start Game</button>
+            <button data-target="play" id="btn-play" class="relative bg-gradient-to-r from-[#0055ff] to-[#00a3ff] text-white border-hidden py-[15px] px-6 text-base font-bold uppercase tracking-widest rounded-lg cursor-pointer w-full mt-4 shadow-3d-blue hover:shadow-3d-blue-hover hover:bg-gradient-to-r hover:from-[#0066ff] hover:to-[#00bfff] active:shadow-3d-blue-active active:translate-y-[4px] ">Start Game</button>
           
           </div>
         </div>
       </div>
     </div>
   </section>
+  
 
   <!-- screen : play game -->
   <section class="screen screen-play" data-screen="play">
@@ -121,15 +212,15 @@ include 'sql/conn.php';
         </div>
 
         <!-- panel : form -->
-        <div class="bg-[rgba(16, 24, 48, 0.85)] border-2 border-cyan-400 rounded-lg p-10 shadow-panel-cyan text-center">
+        <div class="bg-[rgba(16, 24, 48, 0.85)] border-2 border-cyan-400 rounded-lg p-10 shadow-panel-cyan text-center w-[300px]">
           <div class="grid mt-2">
             
             <!-- text : score -->
-            <p class="text-white text-2xl font-bold" id="best-score">Score: 200</p>
+            <p class="text-white text-2xl font-bold" id="best-score">Score: 0</p>
 
             <button data-target="play" class="relative bg-gradient-to-r from-[#0055ff] to-[#00a3ff] text-white border-hidden py-[15px] px-6 text-base font-bold uppercase tracking-widest rounded-lg cursor-pointer w-full mt-4 shadow-3d-blue hover:shadow-3d-blue-hover hover:bg-gradient-to-r hover:from-[#0066ff] hover:to-[#00bfff] active:shadow-3d-blue-active active:translate-y-[4px] ">Save Game</button>
 
-            <button data-target="play" class="relative bg-gradient-to-r from-[#e3ae10] to-[#facc15] text-white border-hidden py-[15px] px-6 text-base font-bold uppercase tracking-widest rounded-lg cursor-pointer w-full mt-4 shadow-3d-yellow hover:shadow-3d-yellow-hover hover:bg-gradient-to-r hover:from-[#d3a10c] hover:to-[#facc15] active:shadow-3d-yellow-active active:translate-y-[4px]">Score Board</button>
+            <a href="leaderboard.html" data-target="play" class="relative bg-gradient-to-r from-[#e3ae10] to-[#facc15] text-white border-hidden py-[15px] px-6 text-base font-bold uppercase tracking-widest rounded-lg cursor-pointer w-full mt-4 shadow-3d-yellow hover:shadow-3d-yellow-hover hover:bg-gradient-to-r hover:from-[#d3a10c] hover:to-[#facc15] active:shadow-3d-yellow-active active:translate-y-[4px]">Score Board</a>
           </div>
         </div>      
       </div>
@@ -140,5 +231,4 @@ include 'sql/conn.php';
   <script src="js/script.js"></script>
 
 </body>
-
 </html>
