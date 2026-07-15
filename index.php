@@ -29,7 +29,7 @@
       <div class="block">
 
         <!-- panel : image -->
-        <div class="flex justify-around items-start mb-14 py-2">
+        <div class="flex justify-around items-start ">
           
           <img src="image/logo-icso.png" alt="contoh logo" width="80" class="image-anim p-2 h-[80px] rounded-full border-white border-2 bg-white duration-300 hover:scale-105">
 
@@ -39,8 +39,8 @@
         </div>
         
         <!-- panel : title -->
-        <div class="absolute title flex justify-center">
-          <img src="image/title.png" alt="" class="object-center translate-y-[-50px] max-w-[300px]">
+        <div class="title flex justify-center">
+          <img src="image/title.png" alt="" class="object-center translate-y-[50px] max-w-[300px]">
         </div>
         
         <!-- panel : form -->
@@ -49,11 +49,11 @@
             
             <!-- input : username -->
             <label for="input-username"  class="lg-text text-base font-semibold text-white pb-2 pt-4">Nama Siswa</label>
-            <input type="text" id="input-username" class="text-cyan-400 py-2 px-4 text-md border-2 border-teal-400 rounded-md outline-none shadow-teal-400 duration-300 bg-blue-950 focus:border-white focus:text-white focus:shadow-cyan-focus" placeholder="Masukan Nama Kamu">
+            <input type="text" id="input-username" class="text-cyan-400 py-3 px-4 text-lg border-2 border-teal-400 rounded-md outline-none shadow-teal-400 duration-300 bg-blue-950 focus:border-white focus:text-white focus:shadow-cyan-focus" placeholder="Masukan Nama Kamu">
             
             <!-- input : Nama Gugus -->
             <label for="input-namegugus" class="lg-text text-base font-semibold text-white pb-2 pt-4">Nama Gugus</label>
-            <input type="text" id="input-namegugus" class="text-cyan-400 py-2 px-4 text-md border-2 border-teal-400 rounded-md outline-none shadow-teal-400 duration-300 bg-blue-950 focus:border-white focus:text-white focus:shadow-cyan-focus"  placeholder="Masukan Nama Gugus">
+            <input type="text" id="input-namegugus" class="text-cyan-400 py-3 px-4 text-lg border-2 border-teal-400 rounded-md outline-none shadow-teal-400 duration-300 bg-blue-950 focus:border-white focus:text-white focus:shadow-cyan-focus"  placeholder="Masukan Nama Gugus">
             
             <!-- button : submit -->
             <button data-target="play" class="relative bg-gradient-to-r from-[#0055ff] to-[#00a3ff] text-white border-hidden py-[15px] px-6 text-base font-bold uppercase tracking-widest rounded-lg cursor-pointer w-full mt-4 shadow-3d-blue hover:shadow-3d-blue-hover hover:bg-gradient-to-r hover:from-[#0066ff] hover:to-[#00bfff] active:shadow-3d-blue-active active:translate-y-[4px] ">Start Game</button>
@@ -122,7 +122,7 @@
           <div class="grid mt-2">
             
             <!-- text : score -->
-            <p class="text-white text-2xl font-bold" id="best-score">Score: 0</p>
+            <p class="text-white text-2xl font-bold" id="best-score">Score: 200</p>
 
             <button data-target="play" class="relative bg-gradient-to-r from-[#0055ff] to-[#00a3ff] text-white border-hidden py-[15px] px-6 text-base font-bold uppercase tracking-widest rounded-lg cursor-pointer w-full mt-4 shadow-3d-blue hover:shadow-3d-blue-hover hover:bg-gradient-to-r hover:from-[#0066ff] hover:to-[#00bfff] active:shadow-3d-blue-active active:translate-y-[4px] ">Save Game</button>
 
