@@ -79,6 +79,7 @@ var countdown = setInterval(function () {
         display.innerHTML = "00:00";
         stoppoint = true
         // alert("Waktu telah berakhir!");
+        transitionWithLoading('final');
     }
 
 }, 1000);

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Zoom Screen Transition + Loading</title>
+
+  <!-- CDN : tailwindcss -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- <script src="tailwind.config.js"></script> -->
+  <!-- Link : style css -->
+  <style>
+.screen-main {
+  background: radial-gradient(circle at 50% 40%, #1e293b, #020617);
+}
+
+.screen-play {
+  background: radial-gradient(circle at 50% 40%, #164e63, #020617);
+}
+
+.screen-end {
+  background: radial-gradient(circle at 50% 40%, #365314, #020617);
+}
+
+  </style>
+
+</head>
+<body>
+  <section class="screen screen-final" data-screen="final">
+    <div class="absolute w-full h-screen bg-[ rgba(16, 24, 48, 0.85)] h-full flex justify-center items-center shadow-green-300">
+      <div class="block">
+        
+        <!-- panel : title -->
+        <div class="title flex justify-center">
+          <img src="../image/congratulation-2.png" alt="" class="absolute object-center translate-y-[-20px] w-full max-w-[400px]">
+        </div>
+
+        <!-- panel : form -->
+        <div class="bg-[rgba(16, 24, 48, 0.85)] border-2 border-cyan-400 rounded-lg p-10 shadow-panel-cyan text-center">
+          <div class="grid mt-2">
+
+            <p class="text-black text-2xl font-bold" id="best-score">Score: 200</p>
+            <!-- button : submit -->
+            <!-- Tombol Neon Hijau -->
+            <button data-target="play" class="relative bg-gradient-to-r from-[#22c55e] to-[#16a34a] shadow-inner text-white border-hidden py-[15px] px-6 text-base font-bold uppercase tracking-widest rounded-lg cursor-pointer w-full mt-4 shadow-3d-green hover:shadow-3d-green-hover hover:bg-gradient-to-r hover:from-[#16a34a] hover:to-[#15803d] active:shadow-3d-green-active active:translate-y-[4px]">Save Score</button>
+            <!-- Tombol Kuning Neon -->
+            <button data-target="play" class="relative bg-gradient-to-r from-[#eab308] to-[#ca8a04] shadow-inner text-white border-hidden py-[15px] px-6 text-base font-bold uppercase tracking-widest rounded-lg cursor-pointer w-full mt-4 shadow-3d-yellow hover:shadow-3d-yellow-hover hover:bg-gradient-to-r hover:from-[#ca8a04] hover:to-[#a16207] active:shadow-3d-yellow-active active:translate-y-[4px]">Score Board</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="../tailwind.config.js"></script>
+</body>
+</html>
