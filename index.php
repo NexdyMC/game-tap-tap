@@ -118,7 +118,8 @@ include 'sql/conn.php';
     </div>
     <span class="loading-percent" id="loadingPercent">0%</span>
   </div>
-  <form action="leaderboard.php" method="post">
+
+  <form action="submit.php" method="post">
     <!-- screen : start game -->
     <section class="screen screen-main" data-screen="main">
       <div class="absolute w-full h-screen bg-[ rgba(16, 24, 48, 0.85)] h-full flex justify-center items-center shadow-green-300">
@@ -159,7 +160,6 @@ include 'sql/conn.php';
         </div>
       </div>
     </section>
-    
 
     <!-- screen : play game -->
     <section class="screen bg-screen-play" data-screen="play">
@@ -224,7 +224,7 @@ include 'sql/conn.php';
 
               <button data-target="play" type="submit" name="btn-submit" class="relative bg-gradient-to-r from-[#0055ff] to-[#00a3ff] text-white border-hidden py-[15px] px-6 text-base font-bold uppercase tracking-widest rounded-lg cursor-pointer w-full mt-4 shadow-3d-blue hover:shadow-3d-blue-hover hover:bg-gradient-to-r hover:from-[#0066ff] hover:to-[#00bfff] active:shadow-3d-blue-active active:translate-y-[4px] ">Save Game</button>
 
-              <button data-target="play" id="btn-leaderboard" type="button" name="btn-leaderboard" class="relative bg-gradient-to-r from-[#e3ae10] to-[#facc15] text-white border-hidden py-[15px] px-6 text-base font-bold uppercase tracking-widest rounded-lg cursor-pointer w-full mt-4 shadow-3d-yellow hover:shadow-3d-yellow-hover hover:bg-gradient-to-r hover:from-[#d3a10c] hover:to-[#facc15] active:shadow-3d-yellow-active active:translate-y-[4px]">SCORE BOARD</button>
+              <a href="leaderboard.php" data-target="play" id="btn-leaderboard" type="button" name="btn-leaderboard" class="relative bg-gradient-to-r from-[#e3ae10] to-[#facc15] text-white border-hidden py-[15px] px-6 text-base font-bold uppercase tracking-widest rounded-lg cursor-pointer w-full mt-4 shadow-3d-yellow hover:shadow-3d-yellow-hover hover:bg-gradient-to-r hover:from-[#d3a10c] hover:to-[#facc15] active:shadow-3d-yellow-active active:translate-y-[4px]">SCORE BOARD</a>
             </div>
           </div>      
         </div>
@@ -234,21 +234,7 @@ include 'sql/conn.php';
 
   <!-- script : js -->
   <script src="js/script.js"></script>
-  <script>
-document.getElementById("btn-leaderboard").addEventListener('click', () => {
-    document.location.href = 'leaderboard.php'
-})
-  </script>
 </body>
 </html>
 
 
-<?php
-if (isset($_POST['btn-submit']) || isset($_POST['btn-leaderboard'])) {
-  $siswa = trim($_POST['input-namasiswa']);
-  $gugus = trim($_POST['input-gugus']);
-  $poin  = (int) $_POST['input-poin']; 
-
-  $db->insert($siswa, $gugus, $poin);
-}
-?>

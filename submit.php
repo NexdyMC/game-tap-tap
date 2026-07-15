@@ -1,34 +1,69 @@
 <?php
 include 'sql/conn.php';
 
-// $query = "SELECT * FROM tb_taptap"; 
+if (isset($_POST['btn-submit']) || isset($_POST['btn-leaderboard'])) {
+  $siswa = trim($_POST['input-namasiswa']);
+  $gugus = trim($_POST['input-gugus']);
+  $poin  = (int) $_POST['input-poin']; 
 
-
+  $data = $db->insert($siswa, $gugus, $poin);
+  if ($data) {
+    echo "<script>document.location = 'index.php' </script>";
+  }
+}
 ?>
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Done | TapTapKuy</title>
-    <!-- CDN : tailwindcss -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="tailwind.config.js"></script>
-    <style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Done | TapTapKuy</title>
+  <!-- CDN : tailwindcss -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="tailwind.config.js"></script>
+  <style>
+    .image-anim {
+      animation: floating 5s infinite ease-in-out;
+    }
 
-    </style>
+    @keyframes drift {
+
+      0%,
+      100% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      50% {
+        transform: translate(12px, -16px) scale(1.08);
+      }
+    }
+
+    @keyframes floating {
+      0% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(20px);
+      }
+
+      100% {
+        transform: translateY(0);
+      }
+    }
+  </style>
 </head>
 <body>
 
-  <section class="bg-screen-main" data-screen="main">
-    <div class="w-full h-screen flex justify-center items-center shadow-green-300">
-      <div class="grid justify-items-center">
-        <div class="bg-cyan-950 border-2 border-cyan-400 rounded-lg p-12 shadow-panel-cyan text-center">
-          <p class="text-2xl text-white font-semibold">Done Save</p>
-        </div>
-      </div>
+  <!-- screen : loading -->
+  <div class="screen screen-loading active" data-screen="loading">
+    <h1>Loading...</h1>
+    <div class="loading-bar-track">
+      <div class="loading-bar-fill" id="loadingFill"></div>
     </div>
-  </section>
+    <span class="loading-percent" id="loadingPercent">0%</span>
+  </div>
+
 
   <script src="js/script.js"></script>
 </body>

@@ -36,7 +36,6 @@ $data = $db->select("tb_taptap");
                         </tr>
                     </thead>
                     <tbody class="divide-y divide-gray-200">
-                        <!-- Repeat this <tr> block 5 times -->
                         <?php 
                         $no = 1;
                         while ($row = mysqli_fetch_assoc($data)) {
@@ -55,7 +54,5 @@ $data = $db->select("tb_taptap");
     </section>
 
     <script src="tailwind.config.js"></script>
-<?php ?>
 </body>
-
 </html>
