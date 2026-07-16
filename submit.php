@@ -1,12 +1,23 @@
 <?php
 include 'sql/conn.php';
 
+// deteksi apakah request ini datang dari fetch() (AJAX) atau dari submit form biasa
+$isAjax = isset($_SERVER['HTTP_X_REQUESTED_WITH'])
+          && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) === 'xmlhttprequest';
+
 if (isset($_POST['btn-submit']) || isset($_POST['btn-leaderboard'])) {
   $siswa = trim($_POST['input-namasiswa']);
   $gugus = trim($_POST['input-gugus']);
-  $poin  = (int) $_POST['input-poin']; 
+  $poin  = (int) $_POST['input-poin'];
 
   $data = $db->insert($siswa, $gugus, $poin);
+
+  if ($isAjax) {
+    // request dari fetch() -> jangan render HTML, cukup balas teks pendek
+    echo $data ? "OK" : "FAIL";
+    exit; // stop di sini, gak lanjut render halaman "Done" di bawah
+  }
+
   if ($data) {
     echo "<script>document.location = 'index.php' </script>";
   }

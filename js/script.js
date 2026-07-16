@@ -74,7 +74,10 @@ function timertaptap(durasiDetik, displayId = "timerDisplay") {
             if (display) display.innerHTML = "00:00";
             stoppoint = true;
 
-            // waktu habis -> loading -> screen final
+            // waktu habis -> langsung simpan ke database secara otomatis (tanpa reload)
+            simpanSkor();
+
+            // lalu tampilkan loading -> screen final
             transitionWithLoading('final', 3000);
         }
     }, 1000);
@@ -82,10 +85,13 @@ function timertaptap(durasiDetik, displayId = "timerDisplay") {
 
 // point counter
 var poin = 0;
+let sudahDisimpan = false; // guard biar data gak kekirim dobel ke database
+
 const btn_press = document.getElementById("btn-press-poin");
 const poinscore = document.getElementById("score-point");
 const bestScore = document.getElementById("best-score");
 const inputscore = document.getElementById("input-poin");
+const formEl = document.querySelector("form");
 
 btn_press.addEventListener("click", function () {
     if (!stoppoint) poin++;
@@ -93,6 +99,53 @@ btn_press.addEventListener("click", function () {
     bestScore.innerHTML = `Poin: ${poin}`;
     inputscore.value = poin;
 });
+
+// kirim data (nama, gugus, poin) ke submit.php lewat AJAX, tanpa reload halaman
+async function simpanSkor() {
+    if (sudahDisimpan) return; // cegah insert dobel ke database
+    sudahDisimpan = true;
+
+    const nama  = document.getElementById("input-username").value.trim();
+    const gugus = document.getElementById("input-gugus").value.trim();
+
+    const formData = new FormData();
+    formData.append("input-namasiswa", nama);
+    formData.append("input-gugus", gugus);
+    formData.append("input-poin", poin);
+    formData.append("btn-submit", "1"); // biar lolos kondisi isset() di submit.php
+
+    if (bestScore) bestScore.innerHTML = `Poin: ${poin} (Menyimpan...)`;
+
+    try {
+        const res = await fetch("submit.php", {
+            method: "POST",
+            headers: { "X-Requested-With": "XMLHttpRequest" }, // tandai request ini AJAX
+            body: formData
+        });
+
+        const teks = await res.text();
+
+        if (teks.trim() === "OK") {
+            if (bestScore) bestScore.innerHTML = `Poin: ${poin}`;
+        } else {
+            console.error("Gagal simpan:", teks);
+            if (bestScore) bestScore.innerHTML = `Poin: ${poin}`;
+            sudahDisimpan = false; // izinkan coba lagi
+        }
+    } catch (err) {
+        console.error("Gagal menyimpan skor:", err);
+        if (bestScore) bestScore.innerHTML = `Poin: ${poin}`;
+        sudahDisimpan = false;
+    }
+}
+
+// cegah submit form manual reload halaman, tombol "Save Game" tetap berfungsi lewat AJAX
+if (formEl) {
+    formEl.addEventListener("submit", function (e) {
+        e.preventDefault();
+        simpanSkor();
+    });
+}
 
 const btn = document.getElementById('btn-play');
 
@@ -102,14 +155,14 @@ btn.addEventListener('click', function () {
 
 transitionWithLoading('main', 3000);
 
-// tombol "mulai main" -> loading 3 menit -> screen play (timer otomatis nyala di dalam transitionWithLoading)
+// tombol "mulai main" -> loading -> screen play (timer otomatis nyala di dalam transitionWithLoading)
 document.querySelector('[data-target="play"]').addEventListener('click', () => {
     const val1 = document.getElementById('input-username').value.trim();
     const val2 = document.getElementById('input-gugus').value.trim();
 
     // Validasi: Cek apakah kedua input memiliki nilai
     if (val1 !== "" && val2 !== "" && val1 !== " " && val2 !== " " ) {
-        transitionWithLoading('play', 100); // 3 menit = 180000ms
+        transitionWithLoading('play', 100);
     } else {
         // Jika salah satu atau keduanya kosong
         alert("Peringatan: masukan Nama Siswa dan gugus!");
@@ -123,4 +176,3 @@ document.querySelectorAll('button[data-target]:not([data-target="play"])').forEa
         transitionWithLoading(btn.dataset.target);
     });
 });
-

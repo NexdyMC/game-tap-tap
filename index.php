@@ -1,4 +1,7 @@
-<?php include 'sql/conn.php'; ?>
+<?php
+include 'sql/conn.php';
+?>
+
 <!DOCTYPE html>
 <html lang="id">
 <head>
@@ -9,10 +12,103 @@
   <meta name="theme-color" content="#4285f4">
   <meta name="application-name" content="GameTapTap">
   <!-- CDN : tailwindcss -->
-  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script src="js/tailwind.js"></script>  
   <script src="tailwind.config.js"></script>
   <!-- Link : style css -->
-  <link rel="stylesheet" href="style/style.css">
+  <style>
+    @font-face {
+      font-family: 'Digital';
+      src: url(font/DS-DIGI.TTF);
+    }
+    .loading-bar-track {
+      width: 260px;
+      height: 6px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .15);
+      overflow: hidden;
+    }
+
+    .loading-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, #22d3ee, #facc15, #4ade80);
+      border-radius: 999px;
+    }
+
+    .loading-percent {
+      font-size: .8rem;
+      letter-spacing: .1em;
+      color: rgba(255, 255, 255, .6);
+    }
+
+    .screen {
+      position: fixed;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 20px;
+      color: white;
+      transform: scale(0.6);
+      opacity: 0;
+      pointer-events: none;
+      z-index: 1;
+      transition: transform .6s cubic-bezier(.22, 1, .36, 1), opacity .5s ease;
+    }
+
+    .screen.active {
+      transform: scale(1);
+      opacity: 1;
+      pointer-events: auto;
+      z-index: 2;
+    }
+
+    .screen-main {
+      background: radial-gradient(circle at 50% 40%, #1e293b, #020617);
+    }
+
+    .screen-play {
+      background: radial-gradient(circle at 50% 40%, #164e63, #020617);
+    }
+
+    .screen-loading {
+      background: #020617;
+      z-index: 3;
+    }
+    .image-anim {
+      animation: floating 5s infinite ease-in-out;
+    }
+
+    @keyframes drift {
+
+      0%,
+      100% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      50% {
+        transform: translate(12px, -16px) scale(1.08);
+      }
+    }
+
+    @keyframes floating {
+      0% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(20px);
+      }
+
+      100% {
+        transform: translateY(0);
+      }
+    }
+
+  </style>
+
 </head>
 <body class="bg-black">
 
@@ -26,7 +122,6 @@
   </div>
 
   <form action="submit.php" method="post">
-
     <!-- screen : start game -->
     <section class="screen screen-main" data-screen="main">
       <div class="absolute w-full h-screen bg-[ rgba(16, 24, 48, 0.85)] h-full flex justify-center items-center shadow-green-300">
@@ -37,6 +132,7 @@
             <img src="image/logo-icso.png" alt="contoh logo" width="80" class="image-anim m-2 p-2 h-[80px] rounded-full border-white border-2 bg-white ">
             <img src="image/logo.png" alt="contoh logo" width="80" class="image-anim m-2 p-2 h-[80px] rounded-full border-white border-2 bg-white">
           </div>
+          
           
           <!-- panel : title -->
           <div class="absolute title flex justify-center">
@@ -63,7 +159,7 @@
         </div>
       </div>
     </section>
-    
+
     <!-- screen : play game -->
     <section class="screen bg-screen-play" data-screen="play">
       <div class="w-full h-screen z-10 overflow-hidden">
@@ -107,8 +203,7 @@
         </div>
       </div>
     </section>
-    
-    <!-- screen : congraturation -->
+
     <section class="screen screen-main" data-screen="final">
       <div class="absolute w-full h-screen bg-[ rgba(16, 24, 48, 0.85)] h-full flex justify-center items-center shadow-green-300">
         <div class="block">
@@ -125,7 +220,6 @@
               <!-- text : score -->
               <p class="text-white text-2xl font-bold" id="best-score">Score: 0</p>
 
-
               <button data-target="play" type="submit" name="btn-submit" class="relative bg-gradient-to-r from-[#0055ff] to-[#00a3ff] text-white border-hidden py-[15px] px-6 text-base font-bold uppercase tracking-widest rounded-lg cursor-pointer w-full mt-4 shadow-3d-blue hover:shadow-3d-blue-hover hover:bg-gradient-to-r hover:from-[#0066ff] hover:to-[#00bfff] active:shadow-3d-blue-active active:translate-y-[4px] ">Save Game</button>
 
               <a href="leaderboard.php" data-target="play" id="btn-leaderboard" type="button" name="btn-leaderboard" class="relative bg-gradient-to-r from-[#e3ae10] to-[#facc15] text-white border-hidden py-[15px] px-6 text-base font-bold uppercase tracking-widest rounded-lg cursor-pointer w-full mt-4 shadow-3d-yellow hover:shadow-3d-yellow-hover hover:bg-gradient-to-r hover:from-[#d3a10c] hover:to-[#facc15] active:shadow-3d-yellow-active active:translate-y-[4px]">SCORE BOARD</a>
@@ -140,5 +234,3 @@
   <script src="js/script.js"></script>
 </body>
 </html>
-
-
